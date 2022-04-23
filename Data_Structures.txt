@@ -1,0 +1,574 @@
+																		### Data Structures ###
+																		
+	- Asymptotic Notations:
+		- Through the help of asymptotic notations we get to know how the efficency of code is behaving when we are increasing the input size(no of operations).
+		- As the input size increases the number of operations increase.
+		- Big O Notation:
+			- A constant time function/method is 'order 1' : O(1)
+			- A linear time function/method is 'order N' : O(N)
+			- A quadratic time function/method is 'Order N squared': O(N^2)
+			- A lograthmic time function/method is 'Order log(N)': O(log(N))
+			
+		- Big O Rules:
+			- Rule 1: Worst Case
+			- Rule 2: Remove constants
+			- Rule 3: Different terms for input(When two diff inputs are given) eg: for nested loops i.e O(a*b)
+			- Rule 4: Drop Non Dominants(Drop the term have less degree)
+			
+		- What cause Time Complexity:
+			- Operations(+, -, *, /)
+			- Comparisions(<, >, =)
+			- Looping(for, while)
+			- Outside function call(function()) or Nested functions
+			
+	    - What cause Space Complexity:
+			- Variable
+			- Data Structures
+			- Function call
+			- Allocations
+			
+			
+	- Operations on Data Structures:
+		- Insertion
+		- Deletion
+		- Traversal
+		- Searching
+		- Sorting
+		- Access
+		
+	
+	- Arrays:
+		- In array we can store multiple data.
+		- Static Array:
+			- Memory allocation is fixed.
+			- New elements can not be added.
+		- Dynamic Array:
+			- Memory allocation is not fixed.
+			- Memory for new element is allocated automatically.
+			
+		Note: In low level language like C, C++ if we declared an array of size 5 than when inserting 6th element it will allocate the memory somewhere else so there will be control
+		over memory so that's why low level language tweak things much faster than high level language
+		
+		
+	- Linked Lists:
+		- It's a type of data structure which is used to store data.
+		- Each element have atleast two field data and link to next node.
+		  eg : 1 ---> 2 ---> 3 ---> 4 ---> 5
+		- The link stores the address of next element and it is called next, reference or link.
+		- Head is the first element of link list.
+		- Tail or end is the last element of link list.
+		- The last node have link to NULL.
+		- Advantage:
+			- Insertion and deletion is easy.
+		    - We don't have to traverse whole linked list.
+		- Disadvantage:
+			- Random access is not easy.
+			- We have to traverse whole linked list for access.
+		
+		- Type of Linked List:
+			- Singly Linked List
+			- Doubly Linked List
+			- Circular Linked List
+			
+		- Singly Linked List:
+			- We have chains of nodes and it is simple link list.
+			- In singly linked list there is only single link that contains the link of next node.
+			- Operations performed:
+				- Addition of Node: At Beginning, end or in between of nodes.
+				- Deletion of Node: At Beginning, end or in between of nodes.
+				- Traversal
+		
+		- Doubly Linked List:
+			- It is a collection of nodes that have data and two links(previous and next).
+			- The previous link points to the previous node.
+			- The next link points to the next node.
+			- The head is first node and tail is the last node.
+			- First node prev is NULL and last node next is NULL.
+			- Operations:
+				- Insertion
+				- Deletion
+				- Traversal
+				
+			- Advantage:
+				- Moving backward is easier than singly linked list because it contains link to previous node.
+			- Disadvantage:
+				- Contains previous and next link so need extra memory to store.
+				
+		- Circular Linked List:
+			- It is also a collection of nodes and links.
+			- In circular linked list the next link of last node will point to the head.
+			- The circular linked list can be singly or doubly linked list.
+			- In doubly circular linked list the left of head will point to the end of linked list.
+			- Operations:
+				- Insertion 
+				- Deletion
+				- Traversal
+				
+			Note: We have to take care of termination condition otherwise it will leads to infinite loop.
+			
+	- Stack and Queues:
+		- Stack:
+			- Stack is a ordered collection of items.
+			- The addition and removal of item will taken place at same end i.e top.
+			- Stack is LIFO(Last in First Out)
+			- Operations:
+				- Push: It adds element to the stack.
+				- Pop: It removes element to the stack.
+				- Peek or top: It gives the top element of stack
+				- isEmpty: It will tell whether stack is empty or not.
+				- isFull: It will tell whether the stack is full or not.
+			
+			
+		- Queue:
+			- It is a linear data structure in which elements are added from one end and removed from other end.
+			- Queue is FIFO or LILO.
+			- The end where element are added is called rear or back or tail.
+			- The end from where element are removed is called front or head.
+			- The process of adding the elements to queue is called enqueue.
+			- The process of removing the elements from queue is called dequeue.
+			- Operations:
+				- enqueue: adds the element to queue
+				- dequeue: removes the element from the queue
+				- isFull: Checks whether the queue is full or not
+				- isEmpty: Check whether the queue is empty or not
+				
+			- Priority Queue:
+				- It is also a type of queue data structure only.
+				- The enqueue and dequeue operations are done on basis of priority.
+				- While removing the element we can set the priority in two ways low element have high priority and second is high element have high priority so in first case the the element are
+				  removing in the ascending order while in the second case the element are removed in descending order from the queue.
+				  
+	- Extra (Working of Java Script Engine):
+		- 	call stack --> Every statement will put in the call stack and executed and than next statement.
+		- 	Web API --> If any API are called than there is a different steps of process before coming to Call stack
+		- 	CallBack function --> It will check whether there any callback function are there or not (Asynchronous and Synchronous Function)
+		- 	Event loop --> It will put the statements in the call stack that are inside the call back function and then these statements are executed.
+		- 	JavaScript is a single threaded language and it has a single call stack.	 
+		
+	
+	- Trees:
+		- Tree is a non-linear data structure in which data is not arranged in the sequential order.
+		- In trees we have relationship between nodes and nodes are connected by edges and they may have or do not have the childrens.
+		- The nodes contains data, value and links to the other nodes.
+		- The topmost node of the tree is called Root.
+		- If any node have edge or branch to other node that node is called Parent or Parent node or the node which have child nodes is called Parent node.
+		- In a tree all nodes are the child nodes except the root node.
+		- The nodes which belong to same parent is called sibling nodes.
+		- The nodes which have do not have any child node are called as leaf node, terminal node or an external node.
+		- The nodes which have atleast one child node are called as non-terminal or internal nodes.
+
+		- Characteristics of Trees:
+			1. Root Node - Every tree have only one root node.
+			2. In a tree if we have n nodes than we have n - 1 number of edges.
+			3. Every child have single parent but a parent have multiple child nodes.
+			4. Tree is a recursive data structure means a tree itself contains multiple trees.
+			5. Path is the no of links to the leaf node from the current node.
+			
+		- Degree of a Node is the number of childs that node have.
+		- Degree of a Tree is the highest degree of a node in all the nodes of the tree.
+		- Level in the tree starts from top and it's start with zero and increment by 1 while going down.
+		- Level of root node is zero.
+		- Height of Node is the longest path from the leaf node to the current node.
+		- Height of the tree is the height of root node or no. of level + 1.
+		- Depth of a Node is the no of edges from the root node to the current node.
+		  Note: Depth of the root node is always zero.
+		- Depth of the Tree is no of edges from the root node to the leaf node in the longest path.
+		- General Tree contains any no of child nodes so it may have 0, 1, 2 ... etc no of nodes.
+		
+		- Binary Tree:
+			- A Binary tree have atmost two children .
+			- So each node have two childrens we name them left and right children.
+			- A node in binary tree contains data, link to left or right node.
+			- Types of Binary Tree:
+				- Full Binary Tree
+				- Complete Binary Tree
+				- Perfect Binary Tree
+				- Balanced Binary Tree
+				- Degenerate Binary Tree
+				
+			- Full Binary Tree:
+				- In Full Binary Tree every node have 0 or 2 child nodes.
+				- Full Binary Tree is a type of binary tree in which each node have 2 childrens other than leaf nodes.
+				
+			- Complete Binary Tree:
+				- A complete binary tree is that which satsify the below conditions
+					- All levels are completely filled except last level
+					- The last level have to  be either completely filled or node have to be filled from left to right
+				- In the last level if there is only right child is available than the binary tree is not complete binary tree.
+				
+			- Perfect Binary Tree:
+				- A perfect binary tree is that in which all the internal nodes have 2 childs and all the leaf nodes should present at the same level.
+				
+			- Balanced Binary Tree:
+				- A balanced binary tree is a tree which follows the below condition
+					- calculate the diff for each node
+					- diff = | height of left subtree - height of right subtree |
+					- If diff for each node is 0 or 1 than the binary tree is Balanced Binary tree.
+					Note: The height of the empty tree should be taken as -1.
+					
+			- Degenerate Binary Tree:
+				- A binary tree is a degenerate binary tree in which parent node have only one child node.
+				
+			
+			- Binary Search Tree:
+				- A binary search tree is a special type of binary tree that have following properties
+					- The left subtree of a node contains only nodes with keys lesser than node's key.
+					- The right subtree of a node contains only nodes with keys greater than node's key.
+					- The left subtree and right subtree each must also be a BST.
+					
+				- With Duplicate Values:
+					- When there are duplicate values in Binary Search Tree different person will follow different approach that are:
+						- Do not allow the duplicate values.
+						- If a duplicate value exist than place it to the left subtree of the node.
+						- If a duplicate value exist than place it to the right subtree of the node.
+						Note: The duplicate values are present in different level.
+						
+				- Operations:
+					- Insertion
+					- Search
+					- Deletion
+					
+					- Search:
+						1. If BST is empty than the given value is not present.
+						2. If root node is equal to given value than value is present.
+						3. If given value is less than the root node than search the given value in the left sub tree and follow steps 1 and 2.
+						4. If given value is greater than the root node than search the given value in the right sub tree and follow steps 1 and 2.
+						5. Repeat the steps number 3 and 4 untill we found the value or search is not complete.
+						
+					- Insertion:
+						1. Check if BST is empty then insert the value and it becomes the root node.
+						2. If the BST is not empty check whether the given value is less than the root node or greater than the root node.
+						3. If value is less than go to left subtree and follow the steps 1 and 2 and insert at the correct place.
+						4. IF value is more than go to the right subtree and follow the steps 1 and 2 and insert at the correct place.
+						5. Repeat the steps 3 and 4 untill the whole tree is not traversed.
+						
+					- Deletion:
+						1. If BST is empty then we can't delete the given element.
+						2. If not than we search the key and either we found the key or we don't found.
+						3. If we found than we delete the node.
+						4. We have three case when we are deleting the node:
+							- Node with 0 child
+							- Node with 1 child
+							- Node with 2 childs
+							
+							- Node with No Child:
+								- Search the node using the search operation.
+								- And when the node found delete the node.
+							
+							- Node with 1 Child:
+								- Search the node using the search operation.
+								- Delete the node when it is found.
+								- And it's child node become the parent node it would be left node or right node.
+								
+							- Node with 2 Childs:
+								- Search the node using the search operation.
+								- Delete the node when it is found.
+								- After deletion we have to replace it's position with some other node so two cases:
+									- Replace it with the highest value from the left subtree.
+									- Replace it with the smallest value from the right subtree.
+									
+				- Binary Tree Traversal:
+					- There are three ways in which a binary tree is traversed that are:
+						- Preorder Traversal
+						- Inorder Traversal
+						- Postorder Traversal
+						- Level Order Traversal
+						
+						- Preorder Traversal:
+							- To traverse a non-empty binary search tree in preorder the following operations are performed recursively at each node that are	
+								- Visit the root node.
+								- Traverse the left subtree and finally
+								- Traverse the right subtree
+								
+						- Inorder Traversal:
+							- To traverse a non-empty binary search tree in inorder the following operations are performed recursively at each node that are
+								- Traverse the left sub tree
+								- Visit the root node and finally
+								- Traversing the right sub tree
+								
+						- Postorder Traversal:
+							- To traverse a non-empty binary search tree in post order the following operations are performed recursively at each node that are	
+								- Traverse the left sub tree
+								- Traverse the right sub tree and finally
+								- Visit the root node in end.
+								
+						- Level Order Traversal:
+							- To traverse a tree in level order start from level 0 and write down the elements from left to right untill you reach the last level.
+							
+				- Maximum and Minimum value in Binary Search Tree:
+					- The smallest node occur in the left subtree so:
+						- Traverse till the left node of left subtree if exist and return the left most.
+						
+					- The largest node occur in the right subtree so:
+						- Traverse till the rightest node exist of the right subtree return the right most.
+						
+				- Total No of Nodes = No of Nodes in left subtree + No of Nodes in right subtree + 1
+				
+				- Insertion Operation:
+					- When we are inserting node we have to see whether
+						- if tree is empty or not
+							- if yes then the inserted node is the first node.
+							- if not then tree contains some node and we have to find a position where we have to insert node.
+							- if the data value is less than key than new node will be inserted into left subtree	
+								- in left subtree we have two cases
+									- if left subtree is empty 
+									- if left subtree is not empty
+							- if the data value is greater than key than new node will be inserted in right subtree
+								- in right subtree we have also two cases
+									- if right subtree is empty
+									- if right subtree is not empty
+									
+				- Search Operation:
+					- When we are searching we have two condition 
+						- if tree is empty than we can't search
+						- if tree is not empty than we have three conditions
+							- if the given value is equal to key of root node if yes we found the node
+							- if not and the search value is less than root key than we have to search in left sub tree
+							- if the search value is greater than root key than we have to search in the right sub tree
+							
+				- Deletion Operation:
+					- If tree is empty than we can't delete the node.
+					- If tree is not empty than first we have to find the node and then we have to delete the node.
+					- If node is found then we have to delete the node and we have three scenarios
+						- The node which have to delete can have 0 child
+						- The node which have to delete can have 1 child and the child became parent
+						- The node which have to delete can have 2 childs and the parent either greatest value from left subtree or smallest value from right sub tree.
+						
+					- While we have to delete root node we have three cases:
+						- root node is leaf node
+							- if tree only have root node than we print message delete operation can not performed.
+						- root node have 1 child
+						- root node have 2 childs
+						
+			- Binary Heap:
+				- A complete binary tree that follows heap property
+				- Heap property is the parent node either greater than or equal to child node's key or parent node need to be lesser than child node's key.
+				
+				- Min Heap: 
+					- A complete binary tree where the key of every parent node is less than or equal to child's node.
+				- Max Heap:
+					- A complete binary tree where the key of every parent node is greater than or equal to child's node.
+				
+				- Where to use Binary Heap:
+					- To implement priority queue
+					- In heap sort algorithm
+					- To find the kth largest or smallest no in the list of numbers
+					
+				- Operations:
+					- heapify : 
+						- it's a process to rearrange the elements of heap in order to maintain the heap property.
+						- in insertion
+						- in deletion
+						- while creating a binary heap from array of numbers
+						
+						- two types:
+							- heapify_up : 
+								- bottom-up approach
+								- if not following the heap property than we have to rearrange the nodes while going up
+								
+							- heapify_down : 
+								- top down approach
+								- if nodes are following the heap property while going down in the heap tree
+					- Insertion:
+						- inserting a new node in the heap by maintaining it's property
+							- add the new node to first open spot available in the lower level.
+							- heapify the new node if voilating the heap tree 
+					
+					- Deletion: 
+						- Removing the node from binary heap by maintaining it's properties
+							- swap the node that have to delete with the last node.
+							- delete the last node
+							- heapify the last node which is placed in the deleted node position
+							
+					- Get min and max key from binary heap
+					- Extract the min and max value from the binary heap
+					
+				- Create Binary Heap:
+					- 1st Method:
+						- Take empty heap
+						- Insert element of list to heap one by one
+						- After inserting one element check whether it's following heap properties or not.
+					
+					- 2nd Method:
+						- First create a complete binary tree using given last of numbers.
+						- Then start heapifying heap : start from leaf node.
+							- We can start checking from internal node becz we have to compare with child nodes.
+							
+				- List Representation of Binary Heap:
+					- root node will be at 0 index.
+					- Parent root of ith node will be at position (i-1)//2.
+					- Left child of ith node is at 2*i + 1.
+					- Right child of ith node is at 2*i + 2.
+					
+				- Heapq module:
+					- heapq.heappush(heap_name, item):
+						- it will push the item to heap and maintain min heap property.
+					- heapq.heappop(heap_name, item):
+						- it will pop the item from heap and maintains the min heap property.
+					- heapq.heapify(heap_name)
+						- convert the list into binary heap
+					- heapq.heappushpop(heap_name, item)
+						- push the item to heap and then remove the smallest element from heap.
+					- heapq.heapreplace(heap_name, item)
+						- first remove the element and than push the element from where it popped.
+						
+			- AVL Trees:
+				- We have diff for each node of the tree and if diff is not 0, 1 and -1 than the tree is unbalanced.
+				- We have to use AVL rotations to balance such type of trees.
+				- The below are the rotations performed in AVL trees:
+					- Left Rotation
+					- Right Rotation
+					- Left-Right Rotation
+					- Right-Left Rotation
+					
+					- Left Rotation:
+						- AVL tree may become unbalanced if a node is inserted into right subtree of right subtree.
+						- Than we have to perform a single left rotation.
+						
+					- Right Rotation:
+						- AVL tree may become unbalanced if a node is inserted into left subtree of left subtree.
+						- Than we have to perform a single right rotation.
+					
+					Note: The double rotation are more complex as compared to single rotation but they are used to balance the binary tree.
+					
+	- Graphs:
+		- Graph is a non linear data structure that contain vertices and edges.
+		- Vertices are also called nodes and edges are called links also.
+		- A single node is called vertex.
+		  Note: All graphs are tree but not all trees are graphs.
+		- Mathematical representation of Graph is:
+			G = (V, E)
+			G = Graph
+			V = Set of Vertices
+			E = Set of Edges
+		- ApplicationS:
+			- For Networks	
+			- Google Maps and GPS
+			- Flow of Computations in Computer Science
+			
+		- Types of Graphs:
+			- Directed Graph
+			- Undirected Graph
+			
+			- Undirected Graph:
+				- A graph in which all edges are bidirectional.
+				
+			- Directed Graph:
+				- A graph in which there will be an direction on the edge.
+				
+			- Based on weight graphs are of two types:
+				- Weighted Graph
+				- Unweighted Graph
+				
+				- Weighted Graph:
+					- A graph in which each edge is assigned with some cost/value/weight.
+					
+				- Unweighted Graph:
+					- A graph where there is no value or weight associated with the edge.
+					
+			- Cyclic and Acylic graph:
+				- Cyclic Graph:
+					- A cyclic graph is that in which there is a cycle present.
+					- If there is a path that starts from the same vertex and end at the same vertex.
+				- Acyclic Graph:
+					- Acyclic graph is that in which no cycle is present.
+					- If the path start from the vertex does not end on the same vertex.
+					
+			- Terminologies in Graph:
+				- Adjacent Nodes/ Neighbour Nodes:
+					- A node X is adjacent to node Y if there is an edge from node X to node Y.
+				- Path:
+					- Sequence of vertices in which each pair of successive nodes is connected by an edge.
+					- Length of path is the no of edges in the path.
+					
+					- Simple Path:
+						- A path is simple if all of it's vertices are distinct.
+					- Closed Path:
+						- A path is closed if the first and last node of the path is same.
+					- Cycle:
+						- Cycle is path in which first and last node need to be same and other nodes are distinct.
+				- Connected Graph:
+					- A graph is said to be connected if there is a path from any node to any other node.
+				- Disconnected Graph:
+					- A graph is said to be disconnected if one or more nodes are not connected to other nodes.
+				- Strongly Connected graph is that in which there is path from one node to every node.
+				- Weakly Connected graph is that in which we can't go a node from other node.
+				- Degree of node is the no of edges connected to it in the undirected graph.
+				- In directed graph:
+					- indegree of a node is the number of edges coming to that node.
+					- outdgree of a node is the number of edges going outside from the node.
+				- Complete Graph is a graph in which there is edge b/w each pair of nodes.
+				
+				- Adjacency Matrix and Adjacency list:
+					- Adjacency Matrix represents the connection between nodes in the matrix form
+					- Creation of Adjacency Matrix:
+						1. Create a kxk matrix where k is the no of nodes/vertices.
+						2. Row and column represents the number of nodes.
+						3. If edge is present than store 1 otherwise store 0.
+							- If the matrix is symmetric around the main digonal than the graph is undirected graph..
+							- If the matrix is not symmetric than the graph is undirected graph.
+						
+						
+					- Adjacency List is that in which we store a list of adjacency nodes for each of the node.
+					Note: We can store the adjacency list by using the dictionary data structure.
+					
+			- Graphs Operations:
+				- Insertion
+				- Deletion
+				- Traversal
+				
+				- Insertion:
+					- Firstly add a new node to the graph.
+					- Update the adjacency matrix or adjacency list.
+						- In adjaceny matrix add one extra column and row and insert 0 as no edges for the new node.
+						- In adjacency list add one extra key and the value is empty list becz no edges for the new node.
+					- Add the edge between the given vertices(V1, V2)
+						- Update the adjacency matrix and adjacency list acc to V1 and V2.
+						
+					- Function to add a node using adjacency matrix representation.
+					- Function to add an edge using adjacency matrix representation.
+					- Function to add a node using adjacency list.
+					- Function to add a edge using adjacency list.
+					
+				- Deletion:
+					- When we have to delete a node we have to delete that vertex and we have to delete all the links to that node.
+					- When delete node from adjacency matrix delete the row and column of index v.
+					- When delete the node from adjacency list delete the key and value pair of v from dictionary and check the value of all key in dictionary for v, if it is present
+					  remove from the list.
+					- Than we have to delete edge:
+						- For Adjacency matrix:
+							graph[index(v1)][index(v2)] = 0 { for directed only}
+							graph[index(v1)][index(v2)] = 0 
+						- For Adjacency list:
+							In graph v1 remove v2 {for directed graph}
+							In graph[v2] remove v1
+					
+					- Function to delete a node using adjacency matrix representation.
+					- Function to delete an edge using adjacency matrix representation.
+					- Function to delete a node using adjacency list.
+					- Function to delete an edge using adjacency list.
+				
+				- Traversal:
+					- Graph Traversal is visit each and every node of the graph.
+					- There are two graph traversal algorithm:
+						- DFS
+						- BFS
+						
+						- Depth First Search(DFS):
+							- First visit the starting node(V).
+							- Visit the adjacent unvisited node of V.
+							- Follow the above step untill all nodes are visited.
+							- If unvisited nodes are present in the graph then back track take visited node as current node and repeat step2.
+							
+							- We can use the stack also in the traversal of DFS(Iterative Approach)
+								- take a starting node and push it to stack and then pop it.
+								- Visit the node and add it to visited list.
+								- Find the unvisited adjacent of the node and push them to stack
+								- follow the step from 1 again in same order untill stack is not empty
+								
+						- Breadth First Search(BFS):
+							- Take a starting node and add it to the queue and pop from the front end.
+							- Visit the node and add it to visited list.
+							- Find the unvisited adjacent node of the node and add them to queue.
+							- Follow the above steps untill queue is not empty.
+							

@@ -1,0 +1,544 @@
+																### Algorithms ###
+																
+	- We have different types of algorithms to implement the data structures in the best efficient way so it took less time and less memory.
+	
+	- Asymptotic Notations:
+		- Through the help of asymptotic notations we get to know how the efficency of code is behaving when we are increasing the input size(no of operations).
+		- As the input size increases the number of operations increase.
+		- Big O Notation:
+			- A constant time function/method is 'order 1' : O(1)
+			- A linear time function/method is 'order N' : O(N)
+			- A quadratic time function/method is 'Order N squared': O(N^2)
+			- A lograthmic time function/method is 'Order log(N)': O(log(N))
+			
+		- Big O Rules:
+			- Rule 1: Worst Case
+			- Rule 2: Remove constants
+			- Rule 3: Different terms for input(When two diff inputs are given) eg: for nested loops i.e O(a*b)
+			- Rule 4: Drop Non Dominants(Drop the term have less degree)
+			
+		- What cause Time Complexity:
+			- Operations(+, -, *, /)
+			- Comparisions(<, >, =)
+			- Looping(for, while)
+			- Outside function call(function()) or Nested functions
+			
+	    - What cause Space Complexity:
+			- Variable
+			- Data Structures
+			- Function call
+			- Allocations
+	
+		- Analysis of Loops:
+			1. O(1): 
+				- Time complexity of a function is considered as O(1) if it does not contain any loop.
+				- A loop or recursion that runs a constant number of times is also considered as O(1). For example, the following loop is O(1).
+				eg: Swap() function has O(1) time complexity.
+				
+			2. O(n): 
+				- Time complexity of a loop is considered as O(n) if the loop variables are incremented/decremented by a constant amount of time.
+				-    Here c is a positive integer constant   
+						for (int i = 1; i <= n; i += c) {  
+							// some O(1) expressions
+						}
+				- The time complexity ofabove for loop is O(n) because the loop executed for n times.
+			
+			3. O(n^c):
+				- Time complexity of nested loops is equal to the number of times the innermost statement is executed.
+				- The following below sample loops have O(n^2) time complexity.
+				- eg: for (int i = 1; i <=n; i += c) {
+							for (int j = 1; j <=n; j += c) {
+								// some O(1) expressions
+							}
+					  }
+					  
+			4. O(logn):
+				- Time Complexity of a loop is considered as O(Logn) if the loop variables are divided/multiplied by a constant amount.
+				- eg: For the below loops the time complexity is O(logn)
+					for (int i = 1; i <=n; i *= c) {
+					   // some O(1) expressions
+				    }
+				    for (int i = n; i > 0; i /= c) {
+					   // some O(1) expressions
+				    }
+			
+			5. O(loglogn):
+				- Time Complexity of a loop is considered as O(LogLogn) if the loop variables are reduced/increased exponentially by a constant amount.
+				- eg: 	// Here c is a constant greater than 1   
+					   for (int i = 2; i <=n; i = pow(i, c)) { 
+						   // some O(1) expressions
+					   }
+			Note: The time complexity of consecutive loops is we have to combine time complexity of each loop.
+					   
+		- Recurrence:
+			- Many algorithms are recursive in nature. When we analyze them, we get a recurrence relation for time complexity.
+			- There are many algorithms in which we get the recurrence relation for time complexity.
+			- There are mainly three ways for solving recurrences:
+				1. Substitution Method:
+					- we make a guess for the solution and then we use mathematical induction to prove the guess is correct or incorrect.
+					- eg: Consider the recurrence relation T(n) = 2T(n/2) + n
+						  - We guess the solution as T(n) = O(nLogn). Now we use induction to proveour guess.
+						  - We need to prove that T(n) <= cnLogn
+						  T(n) = 2T(n/2) + n 
+							   <= 2cn/2Log(n/2) + n {T(n/2) = cn/2Log(n/2)}
+								= cnLog(n/2) + n
+								= cnLogn - cnLog2 + n
+								<= cnLogn 
+								
+				2. Recurrence Tree Method:
+					- In this method we draw a recurrence tree and calculate the time taken by each level of tree. 
+					- Finally we sum the work done at all levels.
+					- To draw recurrence tree, we start from the given recurrence and keep drawing untill we find a pattern among levels.
+					- The pattern is typically an A.P. or an G.P.
+					eg:
+						T(n) = T(n/4) + T(n/2) + cn2
+
+								   cn2
+								 /      \
+							 T(n/4)     T(n/2)
+
+						If we further break down the expression T(n/4) and T(n/2), 
+						we get following recursion tree.
+
+										cn2
+								   /           \      
+							   c(n2)/16      c(n2)/4
+							  /      \          /     \
+						  T(n/16)     T(n/8)  T(n/8)    T(n/4) 
+						Breaking down further gives us following
+										 cn2
+									/            \      
+							   c(n2)/16          c(n2)/4
+							   /      \            /      \
+						c(n2)/256   c(n2)/64  c(n2)/64    c(n2)/16
+						 /    \      /    \    /    \       /    \  
+			
+						- To know the value of T(n), we need to calculate sum of tree nodes level by level. If we sum the above tree level by level, we get the following series.
+						- T(n) = c(n^2 + 5(n^2)/16 + 25(n^2)/256) + ....  { made this sequence and it forms a G.P. till infinity}
+						- T(n) = (n^2)/(1 - 5/16)
+						- T(n) ~ O(n^2)
+				
+				3. Master Theorem:
+					- It is a direct way to get the solution. 
+					- The below is the master theorem and it work for only those recurrence that can be transformed to	
+						T(n) = aT(n/b) + f(n) where a >= 1 and b > 1
+					- There are following three cases:
+						a. If f(n) = O(n^c) where c < Logba then T(n) = Θ(n^(Logba)) 
+						b. If f(n) = Θ(n^c) where c = Logba then T(n) = Θ(n^cLog n)
+						c. If f(n) = Ω(n^c) where c > Logba then T(n) = Θ(f(n))
+					- Master method is mainly derived from recurrence tree method. If we draw recurrence tree of T(n) = aT(n/b) + f(n), we can see that the work done at root is f(n) and work done
+					  at all leaves is Θ(n^c) where c is Logba. And the height of recurrence tree is Logbn
+	
+	
+	- Sorting Algorithms:
+		- A sorting algorithm is used to rearrange a given array or list elements according to a comparision operator on the elements.
+		- Inplace Sorting:
+			- Many sorting techniques will use an extra space so in inplace sorting we don't use the extra space we just modify the existing array or list.
+		- External Sorting:
+			- A sorting algorithm which use an extra space to rearrange the elements of given list or array.
+		- Stable Sorting:
+			- A sorting algorithm is said to be stable if two objects with equal keys appear in the same order in the sorted output.
+		- The efficiency of an algorithm depends on two things:
+			- Time Complexity: It is number of times a particular instruction set is executed rather than the total time taken. 
+			- Space Complexity: It is the total memory space required by the program for it's execution.
+			
+		1. Selection Sort:
+			- The selection sort algorithm sorts an array by repeatedly finding the minimum element from unsorted part and putting it to beginning.
+			- The algorithm maintain two sub arrays:
+				- The subarray which is already sorted.
+				- The remaining unsorted sub array.
+			- In every iteration of selection sort the minimum element from unsorted array is selected and put in beginning or end of sorted array.
+			
+			- For descending order we have to find maximum element.
+				- Start from the first element search for largest element in the list.
+				- Swap the maximum value with first value.
+				- Ignore th sorted part and for unsorted part follow the step 1 and 2 untill all elements are sorted.
+				
+		2. Bubble Sort:
+			- It is a simple sorting algorithm.
+			- It sorts n number of elements in the list by comparing the each pair of adjacent times and swaps them if they are in wrong order.
+			
+			- Algo:
+				- Start with the first element and compare it with the next element of the list.
+				- If the current element is greater than the next element of list then swap them.
+				- If the current element is less than next element, move to next element and repear setp 1.
+				
+				- For Descending order check for smaller element.
+			
+			- For Recursive implementation the code is same first call with length of array and once we get largest element in the end than call the function for n-1 length.
+			
+			Note: In ascending order we will get the largest element in end in each iteration and in descending order we will get the smallest element in end.
+			
+			
+		3. Insertion Sort:
+			- It is a simple sorting algorithm in which the values from unsorted part are picked and placed at the correct position in the sorted part.
+			- Algo: For an array of size n
+				- Iterate from arr[1] to arr[n] over the array.
+				- Compare the current element to it's predecessor.
+				- If the key element is smaller than it's predecessor, compare it to the elements before. Move the greater elements one position up to make space for swapped element.
+		
+		4. Heap Sort:
+			- It is a comparision based sorting technique based on Binary Heap data sructure.
+			- Here e find the minimum element and place them at the beginning.
+			
+			- A Binary tree is a complete binary tree so it will be easily represented as an array.
+			- If the parent node is at index i then the left child at index 2*i+1 and right child at index 2*i+2.
+			- For heap sort we have to heapify the tree, heapify is process of reshaping of binary tree into heap data structure.
+			
+			- Algo for Heapify:
+				- Root = array[0]
+				- Largest = largest(array[0], array[2*0+1], array[2*0+2])
+				- if (root != Largest)
+					swap(Root, Largest)
+					
+			- Heap Sort Algo for increasing order:
+				a. Build a max heap from the input data.
+				b. At this point the largest element is stored at the root of the heap. Replace it with the last time of heap followed by reducing the size of heap by 1. And Finally
+				heapify the root.
+				c. Repeat step 2 when size of heap is greater than 1.
+				
+		5. Counting Sort:
+			- It is a sorting technique based on keys between a specific range.
+		
+		6. Merge Sort:
+			- It is a divide and Conquer algorithm.
+			- It divides the input array into two halves and then merge the two sorted arrays.
+			- The merge() function is used for merging values.
+			- The merge (arr, l, m, r) is a key process that assumes that arr[l..m] and arr[m+1..r] are already sorted.
+			
+			- Algo:
+				MergeSort(arr, l, r) function
+					if l < r
+						1. Find the middle point of array to divide into two halves.
+							m = l+(r-1)/2
+						2. Call mergesort for first half
+							Call MergeSort(arr, l, m)
+						3. Call MergeSort for second half
+							Call MergeSort(arr, m+1, r)
+						4. Merge the above sorted arrays using merge function
+							Call Merge(arr, l, m, r)
+							
+		7. Quick Sort:
+			- It is also an divide and conquer algorithm.
+			- It picks an element as pivot and partitions the given array around the picked pivot.
+			- There are different ways in which pivot is picked:
+				- Always pick first element as pivot.
+				- Always pick last element as pivot.
+				- Pick a random element as pivot.
+				- Pick median as pivot.
+			- When we do partition around pivot we have element smaller than pivot in the left side and greater than in the right side of pivot.
+			- Divide the list based on pivot.
+			- Recursively sort the sub lists.
+			
+			- Algo for Recursive Quicksort:
+				low = starting index & high = ending index
+				quicksort(arr, low, high)
+					if low < high
+						pi = partition(arr, low, high)  # pivot element
+						quicksort(arr, low, pi - 1)
+						quicksort(arr, pi + 1, high)
+						
+			- Algo for Partition:
+				- This function takes last element as pivot places the pivot in it's correct position in the sorted order
+				partition(arr, low, high)
+					pivot = arr[high] # Element placed after pivot
+					i = low - 1  
+					for j in range(low, high - 1, 1) # This loop will sort the element smaller than pivot in ascending order
+						if arr[j] < arr[pivot]
+							increment i by 1.
+							swap arr[j] and arr[i]
+					swap arr[i+1] and arr[high] # Here we swapping pivot with the value greater than it.
+					return i+1  # and return the index of pivot.
+					
+		8. Shell Sort:
+			- It will work by breaking the original list into a number of smaller sublists, each sublist is sorted using insertion sort.
+			- It moves the items near to original index.
+			
+			- Algo:
+				- Take the list of numbers.
+				- Find out the gap/incrementor.
+				- Create the sublist based on gap and sort them using insertion sort.
+				- Reduce gap and repeat step 3.
+				- Stop when gap is 0.
+		
+	- Searching Algorithms:
+		- Searching algorithm are designed to check for an element or retrieve an element from any data structure where it is stored.
+			- Sequential Search:
+				- In these algorithm the list or array is traversed sequentially and every element is checked.
+				  eg: Linear Search
+			- Interval Search:
+				- These algorithms are specially designed for searching in sorted data structure.
+				- These algorithms are much more efficient than Linear search.
+				  eg: Binary Search
+				  
+			1. Linear Search:
+				- A simple approach to do linear search is:
+					- Start from the leftmost element of arr[] and one by one compare x with each element of arr[].
+					- If x matches with an element return an index.
+					- If x doesn't match any of element then return -1.
+					
+			2. Binary Search: 
+				- Used in sorted array by repeatedly dividing the search interval in half. 
+				- It reduces the time complexity to O(logn)
+				- The basic steps to perform binary search are:
+					- Begin with an interval covering the whole array.
+					- If the value of search key is less than the item in the middle of interval, search the lower half interval.
+					- If not search the value in upper half interval.
+					- Repeatedly check until the value is found or intrval is empty.
+					
+				    Steps:
+						1. Compare x with the middle element.
+						2. If matches than return the index of middle element.
+						3. If x is less than middle element lie in the lower half only and perform the search recursively.
+						4. If x is more than middle element lie in the upper half and perform search recursively.
+					
+	- Recursion:
+		- The process in which the function call itself directly or indirectly is called Recursion.
+		- The corresponding function is called Recursive function.
+		- With the help of recursion many problems solved be quickly.
+		- The important point in recursion is base condition i.e that terminates the recursive loop.
+		- When any function is called from main(), the memory is allocated on stack. 
+		- A recursive function calls itself, the memory for called function is allocated on top of the calling function.
+		
+		- Tower of Hanoi:
+			- It is a mathematical puzzle where we have 3 rods and n disks.
+				1. Only one disk can be moved at one time.
+				2. Each move consist of moving upper disk from one of stack and place it into top of another stack i.e a lower disk can be moved if it's upper disk moved.
+				3. No disk may be placed on top of smaller disk.
+				
+				
+	- Dynamic Programming:
+		- Dynamic Programming is mainly optimization over plain recursion.
+		- Where ever we see a recursive solution that has repeated calls for some inputs, we can optimize it using DP.
+		- The idea is to store the results of subproblems so that we do not have to re-compute them later when needed.
+		- The two main properties of problem that suggests that the given problem can be solved by DP:
+			1. Overlapping Subproblems
+			2. Optimal Substructure
+			
+			1. Overlapping Subproblems:
+				- Dynamic Programming is used when solution of same subproblem used again and again.
+				- In DP, computed solution to subproblems are stored in a table so they don't have to re-compute again.
+				- So DP is not useful when there is no common(overlapping) subproblems.
+				eg: Binary search not have anything common but in fibonacci we have to re-compute again and again.
+				- There are two different ways in which the values are stored so reused later:
+					a. Memoization(Top down)
+					b. Tabulation(Bottom up)
+					
+					a. Memoization(Top down):
+						- It is similar to the recursive function just with one modification that it looks into lookup table before computing solutions.
+						- Initialize a lookup array with NIL values.
+						- Whenever we need a solution to the subproblem first look into the lookup array.
+						- If the precomputed value present in the lookup array than return that value.
+						- Otherwise, calculate the value and put into lookup array so it can be used later.
+						
+					b. Tabulation(Bottom Up):
+						- In this method we build a table in bottom up fashion and return last entry from table.
+						- In Memoization the table is filled on demand while in tabulation all entries are filled one by one.
+						
+			2. Optimal Substructure:
+				- A given problem has optimal substructure property if the optimal solution of the given problem can be obtained by optimal solution of it's subproblems.
+				eg: If a node x lies between the shorest path from node u and node v. Than the shortest path is smallest from node u to x and from node x to v.
+				
+		- Steps to solve a DP:
+			- Identify if it is a DP problem.
+			- Decide a state expression with least parameter.
+			- Formulate a state relationship
+			- Do tabulation or add memoization
+			
+		- 0-1 Knapsack Problem:
+			- In the 0-1 knapsack we have n no of weights and W is the capacity of the bag.
+			- For each weight corresponding we will get the profit.
+			- We have to gain the maximum profit by taking weights from the n no of weights and have to put those weights in the bag.
+			
+			- A simple approach is to consider all the subsets of items and calculate the total weight and value of all subsets.
+			- Consider the only subsets whose weight is smaller than capacity of bag(W).
+			- From all subsets, pick the maximum value subset.
+			- To consider all subsets there can be two cases:
+				a. The item is included in the optimal subset.
+				b. The item is not included in the optimal subset.
+			- The maximum value or profit is the last value in 2-D matrix.
+			- The time complexity of the simple approach is O(2^n)
+			
+			- The second approach is use dynamic programming here, we have overlapping problems during taking the multiple optimal subsets.
+			- We can use the memoization technique we have an lookup array k[][] where we store the results for the optimal subsets.
+			- If we don't have to repetitive calculate the computation we can use the lookup array. 
+			- The time complexity of this approach is O(n*W) and auxliary space is also O(n*W)
+			
+		- Longest Common Subsequence:
+			- In the LCS problem we have to find the length of the longest common subsequence present in both of the strings. 
+			- A subsequence is a sequence that appears in the same relative order but not necessarily contiguous. 
+			
+			- The naive solution for this problem is to generate all the subsequence of both the given sequences and find the longest matching subsequence.
+			- Algo:
+				1. Let the input sequence be X[0..m-1] and Y[0..n-1] of lengths m and n respectively.
+				2. And let L(X[0..m-1], Y[0..n-1]) be the function that calculate the length of longest subsequence.
+				3. If the last character of the subsequences match then 
+					L(X[0..m-1], Y[0..n-1]) = 1 + L(X[0..m-2], Y[0..n-2])
+				4. If the last character does not matches then 
+					L(X[0..m-1], Y[0..n-1]) = max(L(X[0..n-2], Y[0..n-1]), L(X[0..n-1], Y[0..m-2]))
+				5. If the length of either of sequence is 0 then return 0.
+			
+		- Flyod-Warshall Algorithm:
+			- It is for solving all pairs shortest path problem.
+			- We have to find shortest distance between every pair of vertices in a given edge weighted directed graph.
+			
+			Algo:
+				- We initialize the solution matrix same as the input graph matrix.
+				- Then we update the solution matrix by considering all vertices as an intermediate vertex.
+				- The idea is one by one pick all vertices and update the shortest path.
+				- For every pair(i,j) of source and destination vertices respectively, there are two possible cases:
+					i. k is not an intermediate vertex in shortest path from i to j.
+					ii. k is an intermediate vertex in shortest path from i to j. We update the value of dist[i][j] as dist[i][k]+dist[k][j] if dist[i][j] > dist[i][k]+dist[k][j].
+					
+		- BellMan Ford:
+			- Using Bellman ford we will find out the shortest distance from source to destination if the graph contains negative edges too.
+			- BellMan ford is also simpler than Dijkastra and suites well for distributed systems.
+			- Go on relaxing all the edges V-1 times(V is no of vertices)
+			- Realxing means check if d[u] + w(u,v) < d[v] ==> d[v] = d[u] + w(u,v)
+			- We have V-1 no of iterations only but after that also if we run it one more time and the distance of any vertex changes that means the graph have negative cycle and 
+			it will not give us correct result.
+			
+			- Algo:
+				- This step will intialize the distance from source to all vertices as Infinite. Create an array of of size V-1 
+				- This step will calculate the shortest distance and we have to run the loop for V-1 times:
+					if d[u] + w(u,v) < d[v]:
+						d[v] = d[u] + w(u,v)
+				- This step reports if there is a negative weight cycle in graph. After running for V-1 times do one more iteration and still if this condition is true
+					if d[u] + w(u,v) < d[v]  ==>  It means there is a negative weight cycle present in the graph.
+			
+			
+	- Greedy Algorithms:
+		- Greedy is an algorithmic paradigm that builds up solution piece by piece, always choosing the next piece that offers the most obivious and immediate benefit.
+		- The below are standard greedy algorithms:
+			1. Activity Selection Problem:
+				- We have activities with the start time and end time and a person can perform at most n activities. The maximum set of activites that a person can execute we have
+				to find out.
+				- Use the below steps:
+					- Sort the activities according to their finishing time.
+					- Select the first activity from sorted array and print it.
+					- Do the following for the remaining activity in the sorted arrray:
+						- If the start time of this activity is greater than or equal to finish time of the previously selected activity then select this activity and print it.
+				
+			2. Job Sequence Problem:
+				- Here we have jobs with deadline and profit so we have to maximize the profit by completing the job in the given deadline time.
+				- Algo:
+					- Sort all the jobs in descending order of profit.
+					- Iterate on jobs in descending order of profit. For each job do the following:
+						- Find the time slot i such that slot is empty and i < deadline and i is greatest. 
+						- Put the job in this slot and mark the slot as fixed.
+						- If no such i exists, then ignore the job.
+			
+			3. Kruskal's Minimum Spanning Tree:
+				- Spanning Tree:
+					- A spanning tree of that graph is a subgraph that is a tree and connects all the vertices together.
+					- A single graph can may have different spanning tree.
+				- Minimum Spanning Tree:
+					- A minimum spanning tree or minimum weight spanning tree for a weighted, connected, undirected graph is a spanning tree with a weight less than or equal to 
+					  the weight of every other spanning tree.
+					- The weight of a spanning tree is sum of weights given to each edge of the spanning tree.
+					- A minimum spanning tree have (v-1) no of edges where v is the number of vertices.
+				
+				- Steps for finding MST using Kruskal's Algo:
+					a. Sort all edges in non-decreasing order of their weight.
+					b. Pick the smallest edge. Check it forms a cycle with the spanning tree formed so far. If cycle is not formed include the edge else discard it.
+					c. Repeat step b untill there are (v-1) edges in the spanning tree.
+			
+			4. Prim's Minimum Spanning Tree:
+				- It is also a greedy algorithm.
+				- It starts with an empty spanning tree.
+				- The idea is to maintain two set of vertices:
+					- The first set contains the vertices already included in the MST.
+					- The other set contains the vertices not yet included.
+					- At every step it consider the edges that connects the two sets and picks the minimum weight edge from these edges.
+					- After picking the edge, it moves the other end point of the edge to set containing MST.
+					
+				- Algorithm:
+					a. Create a set mstSet that keep track of vertices already included in MST.
+					b. Assign a key value to all vertices in the input graph. Initialize all key values as infinite.
+						- Assign key value 0 for the first vertex so that it picked first.
+					c. While mstSet doesn't include all vertices.
+						- Pick a vertex u which is not there in the mstSet and has minimum key value.
+						- Include u to mstSet.
+						- Update key value of all adjacent vertices of u. To update the key values, iterate through all adjacent vertices.
+						- For every adjacent vertex v, if weight of edge u-v is less than the previous key value of v, update the key value as weight of u-v.	
+			
+			5. Dijkastra Algorithm:
+				- Like Prim's MST we generate a SPT(Shortest Path First) with a given source as root.
+				- We maintain two sets, one set contains vertices included in the shortest path tree, other set contains vertices not yet included in the SPT.
+				- At every step of algorithm we find a vertex that is in other set and has minimum distance from source.
+				
+				- Algo:
+					- Create a set sptSet that keeps the track of vertices included in the shortest path tree i.e whose minimum distance from the source is calculated and finalized.
+					- Initially this set is empty .
+					- Assign a distance value to all vertices in the input graph. Initialize all distance values as infinite. Assign distance value 0 for the source vertex so that
+					it picked first.
+					- While sptSet doesn't include all vertices:
+						- Pick a vertex u which is not in sptSet and has minimum distance value.
+						- Include u to sptSet.
+						- Update distance value of all adjacent vertices of u. To update the distance values, iterate through all adjacent vertices. For every adjacent vertex v,
+						if the sum of distance value of u(from source ) and weight of edge u-v, is less than distance value of v, then update the distance value of v.
+						
+			6. Huffman Coding:
+				- Huffman coding is a loosless data compression algorithm.
+				- The idea is to assign's variable-length codes to input characters, lengths of the assigned codes are based on the frequencies of corresponding characters.
+				- There are two major parts in Huffman coding:
+					- Build a Huffman tree from input characters.
+					- Traverse the Huffman tree and assigns codes to characters.
+					
+					- Steps to Build a Huffman tree:
+						- Create a leaf node for each unique character and build a min heap of all leaf nodes.
+						- Extract two nodes with the minimum frequency from the min heap.
+						- Create a new internal node with frequency equal to sum of two nodes frequencies. Make the extracted nodes as left child and other extracted node as it's 
+						  right child. Add this node to min heap.
+						- Repeat steps 2 and 3 until the heap contains only one node. The remaining node is the root node and the tree is complete.
+						
+					- Steps to print code for Huffman tree:
+						- Traverse a tree formed starting from the root.
+						- Maintain an auxilary array.
+						- While moving to the left child, write 0 to the array.
+						- While moving to the right child, write 1 to the array.
+						- Print the array when any leaf node is encountered.
+						
+			7. Topological Sorting:
+				- It is a linear ordering of vertices such that for every directed edge u v, vertex u comes before v in the ordering.
+				- Topological sorting for a graph is not possible if the graph is not a directed acyclic graph(DAG).
+				- There can be more than one topological sorting for the graph.
+				- The first vertex in the topological sorting is always a vertex with indegree as 0.
+				
+	
+	Backtracking:
+		- Backtracking is an algorithmic-technique for solving problems recursively by trying to build a solution incrementally, one piece at a time, removing those solutions that
+		fail to satisfy the constraints of the problem at any point of time.
+		- There are three types of problems in backtracking:
+			1. Decision Problem --> In this, we search for feasible solution.
+			2. Optimization Problem --> In this, we search for the best solution.
+			3. Enumeration Problem --> In this, we find all feasible solutions.
+			
+		- Generally, every constraint satisfaction problem which has clear and well-defined constraints on any objective solution, that incrementally builds candidate to the solution
+		  and abandons a candidate as soon as it determines that the candidate can not possibly be completed to a valid solution, can be solved by backtracking.
+		  eg: Consider a situation where we have 3 boxes in front of us and one of them have gold.
+			- In order to get the coin we will have to open all the boxes one by one.
+			- We will first check the first box, if it does not contain then we will close it and check the next box.
+			- We will search all the boxes untill we find the coin.
+			- This is called backtracking, i.e solving all the subproblems one by one in order to reach the best possible solution.
+			
+		- Difference between Recursion and Backtracking	
+			- In recursion the function will call itself untill it reaches the base case.
+			- In backtracking we use recursion to explore all the possibilities until we get the best result of the problem.
+			
+		N-Queens Problem:
+			- The N-Queen is the problem of placing N chess queens on a NXN chessboard so that no two queen attack each other. 
+			- The idea is to place queens one by one in different coulmns starting from the leftmost column. 
+			- When we place a queen in a column, we check for clashes with already placed queens.
+			- In current column if we find a row for which there is no clash, we mark that row and column as part of solution.
+			- If we do not find such a position we backtrack and return false.
+			
+			- Algo:
+				1. Start in the leftmost column.
+				2. If all queens are placed 
+					return true
+				3. Try all rows in the current column. Do following for every tried row:
+					a. If the queen can be placed safely in this row then mark this [row, column] as part of the solution and recursively check if placing queen here leads to solution.
+					b. If placing the queen in [row, column] leads to a solution thenreturn true.
+					c. If placing queen doesn't leads to solution then unmark this [row, column] and go to step (a) to try other rows.
+				4. If all rows have tried and nothing worked 
